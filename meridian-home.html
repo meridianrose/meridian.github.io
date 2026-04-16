@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Speech and Learning Services — Aubrey, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --linen:      #F2F0EB;
+    --grey-green: #D6DDD6;
+    --sage:       #8A9E8C;
+    --forest:     #2A332C;
+    --pale-blue:  #E8ECEC;
+    --blush:      #D9B0A0;
+    --tan:        #A07860;
+    --brown:      #3A2018;
+    --cream:      #F7F5F0;
+    --text:       #2A332C;
+    --text-mid:   #4A5248;
+    --text-light: #7A7870;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); font-family: 'Jost', sans-serif; color: var(--text); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--cream); border-bottom: 1px solid var(--grey-green);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 3rem; min-height: 72px; gap: 2rem;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; flex-shrink: 0; }
+  .nav-wordmark { display: flex; flex-direction: column; gap: 0.15rem; }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.35rem; letter-spacing: 0.1em; color: var(--forest); line-height: 1; }
+  .nav-sub { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); font-weight: 300; }
+  .nav-divider { width: 1px; height: 36px; background: var(--grey-green); flex-shrink: 0; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; flex-shrink: 0; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; white-space: nowrap; }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-links a.active { color: var(--forest); border-bottom: 1px solid var(--blush); padding-bottom: 2px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--forest);
+    padding: 4rem 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 88vh;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .wing-deco { position: absolute; pointer-events: none; }
+
+  /* Top name block */
+  .hero-name-block {
+    position: relative; z-index: 2;
+    margin-bottom: 2.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--sage); font-weight: 400; margin-bottom: 1rem;
+  }
+  .hero-business-name {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.2rem, 4.5vw, 4rem); color: var(--linen);
+    line-height: 1.05; letter-spacing: 0.1em; margin-bottom: 0.5rem;
+  }
+  .hero-cred-line {
+    font-family: 'Jost', sans-serif; font-weight: 200;
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1.2rem;
+  }
+  .hero-name-divider {
+    width: 44px; height: 1px; background: var(--blush); margin: 0 auto;
+  }
+
+  /* Logo mark centered */
+  .hero-right {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1.6rem; position: relative; z-index: 2;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 300;
+    font-size: 1.2rem; color: rgba(242,240,235,0.55);
+    letter-spacing: 0.04em; margin-top: 0.5rem;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--blush); color: var(--brown);
+    font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 500; padding: 1rem 1.8rem;
+    border-radius: 2px; text-decoration: none; transition: background 0.2s, color 0.2s; white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--linen); color: var(--forest); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: transparent; color: rgba(242,240,235,0.6);
+    font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 400; padding: 1rem 0;
+    text-decoration: none; border-bottom: 1px solid rgba(242,240,235,0.2);
+    transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .btn-ghost:hover { color: var(--linen); border-color: rgba(242,240,235,0.5); }
+
+  .btn-arrow { width: 16px; height: 1px; background: currentColor; position: relative; flex-shrink: 0; }
+  .btn-arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 5px; height: 5px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); }
+
+  /* ── HERO LOGO ── */
+  .hero-logo-svg { width: 320px; height: 384px; overflow: visible; }
+
+  /* Wing draw animations */
+  .draw { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s cubic-bezier(0.4,0,0.2,1) forwards; }
+  .draw-2 { animation-delay: 0.4s; }
+  .draw-3 { animation-delay: 0.7s; }
+  .draw-4 { animation-delay: 0.9s; }
+  .draw-5 { animation-delay: 1.1s; }
+  .draw-6 { animation-delay: 1.3s; }
+  .fade-in-logo { opacity: 0; animation: fadeInLogo 0.8s ease forwards; }
+  .fi-2 { animation-delay: 1.5s; }
+  .fi-3 { animation-delay: 1.8s; }
+  .fi-4 { animation-delay: 2.0s; }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fadeInLogo { to { opacity: 1; } }
+
+  .hero-wordmark { text-align: center; opacity: 0; animation: riseIn 1s ease forwards; animation-delay: 1.2s; }
+  .hero-wordmark-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; letter-spacing: 0.22em; color: rgba(242,240,235,0.6); display: block; line-height: 1; }
+  .hero-wordmark-sub { font-family: 'Jost', sans-serif; font-weight: 200; font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sage); display: block; margin-top: 0.45rem; }
+
+  @keyframes riseIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── MARQUEE STRIP ── */
+  .marquee-strip { background: var(--blush); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-flex; gap: 0; animation: marquee 32s linear infinite; }
+  .marquee-item { display: inline-flex; align-items: center; gap: 1.2rem; padding: 0 2rem; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brown); font-weight: 400; }
+  .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--tan); flex-shrink: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SHARED ── */
+  .section { max-width: 960px; margin: 0 auto; padding: 5rem 3rem; }
+  .section-label { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); font-weight: 400; margin-bottom: 0.8rem; }
+  .section-rule { width: 28px; height: 1px; background: var(--blush); margin-bottom: 1.6rem; }
+  .section-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.4rem; color: var(--forest); line-height: 1.2; margin-bottom: 1rem; }
+  .section-headline em { font-style: italic; color: var(--tan); }
+
+  /* ── SERVICES ── */
+  .services-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+
+  .services-intro p { font-size: 0.95rem; font-weight: 300; color: var(--text-mid); line-height: 1.9; margin-bottom: 1.8rem; }
+
+  .services-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--forest); color: var(--linen);
+    font-family: 'Jost', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 400; padding: 1rem 1.8rem;
+    border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap;
+  }
+  .services-btn:hover { background: var(--tan); }
+
+  .therapy-list { display: flex; flex-direction: column; gap: 0; }
+
+  .therapy-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--grey-green);
+  }
+  .therapy-item:first-child { border-top: 1px solid var(--grey-green); }
+
+  .therapy-cell {
+    padding: 1.4rem 1.6rem;
+    border-right: 1px solid var(--grey-green);
+  }
+  .therapy-cell:last-child { border-right: none; }
+
+  .therapy-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); font-weight: 400; margin-bottom: 0.35rem; }
+  .therapy-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.2rem; color: var(--forest); line-height: 1.3; margin-bottom: 0.4rem; }
+  .therapy-desc { font-size: 0.82rem; font-weight: 300; color: var(--text-light); line-height: 1.65; }
+
+  /* ── ABOUT BAND ── */
+  .about-band { background: var(--linen); border-top: 1px solid var(--grey-green); border-bottom: 1px solid var(--grey-green); }
+  .about-inner { max-width: 960px; margin: 0 auto; padding: 4.5rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+  .about-quote { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; color: var(--forest); line-height: 1.4; border-left: 2px solid var(--blush); padding-left: 1.8rem; }
+  .about-quote em { font-style: italic; color: var(--tan); }
+
+  .about-right { display: flex; flex-direction: column; gap: 1.2rem; }
+  .about-body { font-size: 0.95rem; font-weight: 300; color: var(--text-mid); line-height: 1.9; }
+
+  .about-creds { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.2rem 1.4rem; background: white; border: 1px solid var(--grey-green); border-radius: 3px; border-left: 3px solid var(--sage); }
+  .cred-row { display: flex; align-items: center; gap: 0.7rem; font-size: 0.78rem; font-weight: 300; color: var(--text-mid); letter-spacing: 0.03em; }
+  .cred-row::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+
+  .btn-dark { display: inline-flex; align-items: center; gap: 0.7rem; background: var(--forest); color: var(--linen); font-family: 'Jost', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 400; padding: 1rem 1.8rem; border-radius: 2px; text-decoration: none; transition: background 0.2s; white-space: nowrap; align-self: flex-start; }
+  .btn-dark:hover { background: var(--tan); }
+
+  /* ── LOCATIONS ── */
+  .locations-strip { background: var(--forest); position: relative; overflow: hidden; }
+  .locations-inner { max-width: 960px; margin: 0 auto; padding: 4rem 3rem; position: relative; z-index: 2; }
+
+  .locations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; margin-top: 2rem; }
+  .location-tile { background: rgba(255,255,255,0.03); padding: 1.8rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.2s; }
+  .location-tile:hover { background: rgba(255,255,255,0.07); }
+  .location-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-bottom: 0.4rem; }
+  .location-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; color: var(--linen); letter-spacing: 0.04em; }
+  .location-desc { font-size: 0.88rem; font-weight: 300; color: rgba(242,240,235,0.5); line-height: 1.65; }
+
+  /* ── FINAL CTA ── */
+  .final-cta { max-width: 960px; margin: 0 auto; padding: 5rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .final-cta-headline { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.4rem; color: var(--forest); line-height: 1.2; margin-bottom: 0.7rem; }
+  .final-cta-headline em { font-style: italic; color: var(--tan); }
+  .final-cta-body { font-size: 0.92rem; font-weight: 300; color: var(--text-mid); line-height: 1.8; max-width: 440px; }
+  .final-cta-actions { display: flex; flex-direction: column; gap: 0.8rem; align-items: flex-start; flex-shrink: 0; }
+  .contact-inline { font-size: 0.78rem; font-weight: 300; color: var(--text-light); letter-spacing: 0.04em; }
+  .contact-inline a { color: var(--tan); text-decoration: none; }
+  .contact-inline a:hover { color: var(--forest); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--forest); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 0.95rem; letter-spacing: 0.16em; color: var(--linen); opacity: 0.7; }
+  .footer-note { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,240,235,0.3); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(16px); animation: fadeUp 0.8s ease forwards; }
+  .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.25s; } .d3 { animation-delay: 0.4s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { min-height: auto; padding: 4rem 2rem 3.5rem; }
+    .hero-logo-svg { width: 260px; height: 312px; }
+    .hero-business-name { font-size: 2.6rem; }
+    .services-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .locations-grid { grid-template-columns: 1fr 1fr; }
+    .final-cta { flex-direction: column; gap: 2.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0.9rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-name { font-size: 1rem; }
+    .nav-sub { font-size: 0.38rem; }
+
+    .hero { padding: 3rem 1.2rem 2.5rem; }
+    .hero-business-name { font-size: 1.9rem; }
+    .hero-logo-svg { width: 200px; height: 240px; }
+
+    .section { padding: 3.5rem 1.5rem; }
+    .about-inner { padding: 3.5rem 1.5rem; }
+    .locations-inner { padding: 3.5rem 1.5rem; }
+    .final-cta { padding: 3.5rem 1.5rem; }
+
+    .therapy-item { grid-template-columns: 1fr; }
+    .therapy-cell { border-right: none; border-bottom: 1px solid var(--grey-green); }
+    .therapy-cell:last-child { border-bottom: none; }
+    .locations-grid { grid-template-columns: 1fr 1fr; }
+
+    .final-cta-actions { width: 100%; }
+    .services-btn, .btn-dark { justify-content: center; width: 100%; }
+
+    footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.2rem; }
+  }
+
+  @media (max-width: 380px) {
+    .locations-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="32" height="38" viewBox="0 0 200 200" fill="none">
+      <path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="#2A332C" fill-opacity="0.08" stroke="#2A332C" stroke-width="1.8"/>
+      <path d="M100 160 C100 160 30 170 22 140 C16 120 40 108 70 118 C85 123 95 140 100 160Z" fill="#2A332C" fill-opacity="0.05" stroke="#2A332C" stroke-width="1.3"/>
+      <path d="M100 155 C95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M100 148 C88 118 60 90 30 72" stroke="#8A9E8C" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M100 158 C80 148 50 140 32 148" stroke="#D9B0A0" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
+      <ellipse cx="58" cy="52" rx="7" ry="5" fill="#D9B0A0" fill-opacity="0.28" transform="rotate(-30 58 52)"/>
+      <circle cx="100" cy="30" r="3" fill="#8A9E8C"/>
+      <line x1="100" y1="30" x2="100" y2="175" stroke="#2A332C" stroke-width="1" opacity="0.2" stroke-dasharray="3 5"/>
+    </svg>
+    <div class="nav-wordmark">
+      <span class="nav-name">Meridian Speech &amp; Learning Services</span>
+      <span class="nav-sub">Charity Lujan &nbsp;&middot;&nbsp; M.A., CCC-SLP &nbsp;&middot;&nbsp; Aubrey, TX</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="wing-deco" style="left:3%; bottom:10%; width:110px; opacity:0.08; transform:rotate(20deg);">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.6" stroke="white" stroke-width="1.2"/><path d="M100 155 C95 120 72 70 50 38" stroke="#D9B0A0" stroke-width="1.2" stroke-linecap="round"/><circle cx="100" cy="30" r="3" fill="#D9B0A0"/></svg>
+  </div>
+  <div class="wing-deco" style="left:8%; top:5%; width:60px; opacity:0.07; transform:rotate(-20deg);">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.8" stroke="white" stroke-width="2"/><path d="M100 155 C95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1.5" stroke-linecap="round"/><circle cx="100" cy="30" r="4" fill="#D9B0A0"/></svg>
+  </div>
+  <div class="wing-deco" style="right:5%; top:8%; width:150px; opacity:0.07; transform:rotate(-8deg) scaleX(-1);">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.6" stroke="white" stroke-width="1"/><path d="M100 155 C95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1" stroke-linecap="round" opacity="0.8"/><path d="M100 158 C80 148 50 140 32 148" stroke="#D9B0A0" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/><circle cx="100" cy="30" r="2.5" fill="#8A9E8C"/></svg>
+  </div>
+  <div class="wing-deco" style="right:3%; bottom:8%; width:85px; opacity:0.08; transform:rotate(14deg);">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.6" stroke="white" stroke-width="1.5"/><path d="M100 155 C95 120 72 70 50 38" stroke="#D9B0A0" stroke-width="1.2" stroke-linecap="round"/><circle cx="100" cy="30" r="3" fill="#D9B0A0"/></svg>
+  </div>
+  <div class="wing-deco" style="left:44%; top:3%; width:55px; opacity:0.06; transform:rotate(-18deg);">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.7" stroke="white" stroke-width="2"/><path d="M100 155 C95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1.5" stroke-linecap="round"/><circle cx="100" cy="30" r="4" fill="#D9B0A0"/></svg>
+  </div>
+
+  <!-- Name block — top, centered -->
+  <div class="hero-name-block fade-up">
+    <p class="hero-eyebrow">Aubrey, TX &amp; surrounding areas</p>
+    <h1 class="hero-business-name">Meridian Speech &amp; Learning Services</h1>
+    <p class="hero-cred-line">Charity Lujan &nbsp;&middot;&nbsp; M.A., CCC-SLP</p>
+    <div class="hero-name-divider"></div>
+  </div>
+
+  <!-- Animated logo — centered below name -->
+  <div class="hero-right">
+    <svg class="hero-logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="draw" d="M 100 160 C 100 160 20 140 10 80 C 4 44 40 10 80 28 C 100 36 110 50 110 70 C 110 90 100 160 100 160 Z" fill="white" fill-opacity="0.06" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="draw draw-2" d="M 100 160 C 100 160 30 170 22 140 C 16 120 40 108 70 118 C 85 123 95 140 100 160 Z" fill="white" fill-opacity="0.04" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="draw draw-3" d="M 100 155 C 95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1.3" stroke-linecap="round"/>
+      <path class="draw draw-3" d="M 100 148 C 88 118 60 90 30 72" stroke="#8A9E8C" stroke-width="1.1" stroke-linecap="round"/>
+      <path class="draw draw-4" d="M 100 140 C 94 108 82 75 68 48" stroke="#8A9E8C" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+      <path class="draw draw-4" d="M 100 158 C 80 148 50 140 32 148" stroke="#D9B0A0" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
+      <path class="draw draw-5" d="M 96 162 C 76 158 52 158 38 162" stroke="#D9B0A0" stroke-width="0.6" stroke-linecap="round" opacity="0.55"/>
+      <ellipse class="fade-in-logo fi-2" cx="58" cy="52" rx="7" ry="5" fill="#D9B0A0" fill-opacity="0.28" transform="rotate(-30 58 52)"/>
+      <ellipse class="fade-in-logo fi-2" cx="40" cy="80" rx="6" ry="4.5" fill="#D9B0A0" fill-opacity="0.20" transform="rotate(-15 40 80)"/>
+      <ellipse class="fade-in-logo fi-3" cx="28" cy="108" rx="5" ry="4" fill="#8A9E8C" fill-opacity="0.22" transform="rotate(-5 28 108)"/>
+      <circle class="fade-in-logo fi-3" cx="12" cy="88" r="2.2" fill="#8A9E8C" fill-opacity="0.55"/>
+      <circle class="fade-in-logo fi-3" cx="10" cy="106" r="1.8" fill="#8A9E8C" fill-opacity="0.45"/>
+      <circle class="fade-in-logo fi-4" cx="14" cy="124" r="1.8" fill="#F2F0EB" fill-opacity="0.5"/>
+      <circle class="fade-in-logo fi-4" cx="22" cy="148" r="2.2" fill="#F2F0EB" fill-opacity="0.4"/>
+      <line class="draw draw-6" x1="100" y1="30" x2="100" y2="175" stroke="white" stroke-width="1" opacity="0.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+      <circle class="fade-in-logo fi-2" cx="100" cy="30" r="3" fill="#8A9E8C"/>
+    </svg>
+
+    <p class="hero-tagline fade-up d2">Every child deserves to be truly heard.</p>
+
+    <div class="hero-actions fade-up d3">
+      <a class="btn-primary" href="contact.html">Get started <span class="btn-arrow"></span></a>
+      <a class="btn-ghost" href="about.html">Meet Charity <span class="btn-arrow"></span></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Speech Sound Disorders</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Social Communication</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Expressive Language</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Reading Comprehension</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fluency</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Literacy Enrichment</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Neurodiversity Affirming</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Ages 3–21</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Virtual &amp; In-Person</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aubrey, TX</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Speech Sound Disorders</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Social Communication</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Expressive Language</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Reading Comprehension</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fluency</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Literacy Enrichment</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Neurodiversity Affirming</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Ages 3–21</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Virtual &amp; In-Person</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aubrey, TX</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+  <div class="services-layout">
+    <div class="services-intro">
+      <p class="section-label">Specialized care</p>
+      <div class="section-rule"></div>
+      <h2 class="section-headline" style="margin-bottom:1.2rem;">Thoughtfully<br><em>delivered</em></h2>
+      <p>Each child's communication journey is unique. Charity's approach begins with understanding your child fully — then building a program that fits their needs, goals, and family values.</p>
+      <br>
+      <a class="services-btn" href="about.html">Learn more <span class="btn-arrow"></span></a>
+    </div>
+
+    <div class="therapy-list">
+
+      <div class="therapy-item">
+        <div class="therapy-cell">
+          <div class="therapy-label">Evaluation</div>
+          <div class="therapy-name">Evaluation & Assessment</div>
+          <div class="therapy-desc">Comprehensive testing with collaborative family input to build a care plan around your child's individual strengths, needs, and goals.</div>
+        </div>
+        <div class="therapy-cell">
+          <div class="therapy-label">Therapy</div>
+          <div class="therapy-name">Speech Sound Disorders</div>
+          <div class="therapy-desc">Articulation and phonological therapy to help children speak clearly and confidently using evidence-based approaches.</div>
+        </div>
+      </div>
+
+      <div class="therapy-item">
+        <div class="therapy-cell">
+          <div class="therapy-label">Therapy</div>
+          <div class="therapy-name">Social Communication</div>
+          <div class="therapy-desc">Pragmatic language, perspective-taking, and real-world conversational skills for school-aged children and adolescents.</div>
+        </div>
+        <div class="therapy-cell">
+          <div class="therapy-label">Therapy</div>
+          <div class="therapy-name">Expressive & Receptive Language</div>
+          <div class="therapy-desc">Targeted support for understanding and using language — vocabulary, sentence structure, following directions, and more.</div>
+        </div>
+      </div>
+
+      <div class="therapy-item">
+        <div class="therapy-cell">
+          <div class="therapy-label">Therapy</div>
+          <div class="therapy-name">Reading Comprehension</div>
+          <div class="therapy-desc">Connecting spoken language to written text — narrative skills, vocabulary development, and expressive language across academic contexts.</div>
+        </div>
+        <div class="therapy-cell">
+          <div class="therapy-label">Therapy</div>
+          <div class="therapy-name">Fluency</div>
+          <div class="therapy-desc">Evidence-based support for stuttering and fluency disorders, helping children communicate with greater ease and confidence.</div>
+        </div>
+      </div>
+
+      <div class="therapy-item">
+        <div class="therapy-cell">
+          <div class="therapy-label">Enrichment</div>
+          <div class="therapy-name">Literacy & Language Enrichment</div>
+          <div class="therapy-desc">For children without a diagnosis — oral language and vocabulary programs to build a strong foundation before formal reading begins.</div>
+        </div>
+        <div class="therapy-cell">
+          <div class="therapy-label">Training</div>
+          <div class="therapy-name">Professional Development</div>
+          <div class="therapy-desc">Available for school teams and co-ops — Charity is an experienced presenter on topics spanning AAC, visual supports, and language development.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT TEASER -->
+<div class="about-band">
+  <div class="about-inner">
+    <blockquote class="about-quote">
+      "Meeting each child <em>exactly where they are</em> — with patience, expertise, and genuine care."
+    </blockquote>
+    <div class="about-right">
+      <p class="section-label">About Charity</p>
+      <p class="about-body">Charity Lujan is a licensed and ASHA-certified Speech-Language Pathologist with over 20 years of experience serving children and families across North Texas. Her practice is grounded in neurodiversity affirming principles and a genuine commitment to each child she works with.</p>
+      <div class="about-creds">
+        <div class="cred-row">M.A. Speech-Language Pathology · University of North Texas</div>
+        <div class="cred-row">ASHA Certificate of Clinical Competence (CCC-SLP)</div>
+        <div class="cred-row">Texas State Licensed SLP · 20+ Years Experience</div>
+      </div>
+      <a class="btn-dark" href="about.html">Full bio <span class="btn-arrow"></span></a>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATIONS -->
+<div class="locations-strip">
+  <div class="wing-deco" style="right:-15px; top:-10px; width:180px; opacity:0.06; transform:rotate(5deg); z-index:1;">
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 160 C100 160 20 140 10 80 C4 44 40 10 80 28 C100 36 110 50 110 70 C110 90 100 160 100 160Z" fill="white" fill-opacity="0.7" stroke="white" stroke-width="0.8"/><path d="M100 155 C95 120 72 70 50 38" stroke="#8A9E8C" stroke-width="1" stroke-linecap="round" opacity="0.8"/><circle cx="100" cy="30" r="2.5" fill="#8A9E8C"/></svg>
+  </div>
+  <div class="locations-inner">
+    <p class="section-label" style="color:var(--sage);">Where we meet</p>
+    <div class="section-rule"></div>
+    <h2 class="section-headline" style="color:var(--linen); margin-bottom:0;">Therapy that <em style="color:var(--blush);">fits your family</em></h2>
+    <div class="locations-grid">
+      <div class="location-tile"><div class="location-dot"></div><div class="location-title">Virtual Sessions</div><div class="location-desc">Flexible, secure therapy from the comfort of your home.</div></div>
+      <div class="location-tile"><div class="location-dot"></div><div class="location-title">In-Home Visits</div><div class="location-desc">Therapy in the natural environment where your child feels most at ease.</div></div>
+      <div class="location-tile"><div class="location-dot"></div><div class="location-title">Daycare Settings</div><div class="location-desc">On-site sessions woven into your child's existing day.</div></div>
+      <div class="location-tile"><div class="location-dot"></div><div class="location-title">Aubrey Area Library</div><div class="location-desc">A welcoming, accessible community location for families.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-text">
+    <p class="section-label">Ready to begin?</p>
+    <div class="section-rule"></div>
+    <h2 class="final-cta-headline">Take the <em>first step</em> today</h2>
+    <p class="final-cta-body">Fill out a short referral form and Charity will be in touch within one business day to discuss your child's needs and answer any questions your family may have.</p>
+  </div>
+  <div class="final-cta-actions">
+    <a class="btn-dark" href="contact.html">Contact us <span class="btn-arrow"></span></a>
+    <p class="contact-inline">
+      Or reach out directly:<br>
+      <a href="#" data-contact="phone">[loading]</a> &nbsp;·&nbsp;
+      <a href="#" data-contact="email">[loading]</a>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Meridian Speech & Learning Services</span>
+  <span class="footer-note" data-contact="footer">[loading]</span>
+</footer>
+
+<script>
+(function() {
+  var e=[99,104,97,114,105,116,121,108,117,106,97,110,115,108,112,64,103,109,97,105,108,46,99,111,109];
+  var p=[40,52,54,57,41,32,56,53,48,45,51,49,53,56];
+  var t=[52,54,57,56,53,48,51,49,53,56];
+  var em=e.map(function(c){return String.fromCharCode(c);}).join('');
+  var ph=p.map(function(c){return String.fromCharCode(c);}).join('');
+  var tl=t.map(function(c){return String.fromCharCode(c);}).join('');
+  document.querySelectorAll('[data-contact="email"]').forEach(function(el){
+    if(el.tagName==='A'){el.href='mailto:'+em;el.textContent=em;}else{el.textContent=em;}
+  });
+  document.querySelectorAll('[data-contact="phone"]').forEach(function(el){
+    if(el.tagName==='A'){el.href='tel:'+tl;el.textContent=ph;}else{el.textContent=ph;}
+  });
+  document.querySelectorAll('[data-contact="footer"]').forEach(function(el){
+    el.textContent='Charity Lujan \u00b7 M.A., CCC-SLP \u00b7 Aubrey, TX \u00b7 '+ph+' \u00b7 '+em;
+  });
+})();
+</script>
+
+</body>
+</html>
