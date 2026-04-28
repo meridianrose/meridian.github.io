@@ -6,6 +6,35 @@
 <title>About — Meridian Speech and Learning Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
+  html { max-width: 100vw; overflow-x: hidden; }
+  body { max-width: 100vw; overflow-x: hidden; }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: #F7F5F0;
+    border-bottom: 1px solid #D6DDD6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 3rem;
+    min-height: 72px;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; flex-shrink: 0; }
+  .nav-wordmark { display: flex; flex-direction: column; gap: 0.15rem; }
+  .nav-name { font-family: "Cormorant Garamond", serif; font-weight: 300; font-size: 1.35rem; letter-spacing: 0.1em; color: #2A332C; line-height: 1; }
+  .nav-sub { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8A9E8C; font-weight: 300; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; flex-shrink: 0; }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: #4A5248; text-decoration: none; font-weight: 400; white-space: nowrap; }
+  .nav-links a:hover { color: #8A9E8C; }
+  .nav-links a.active { color: #2A332C; border-bottom: 1px solid #D9B0A0; padding-bottom: 2px; }
+
+
   :root {
     /* From uploaded palette — row 1 */
     --linen:     #F2F0EB;
@@ -37,22 +66,7 @@
     min-height: 100vh;
   }
 
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--cream); border-bottom: 1px solid var(--grey-green);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.85rem 3rem; min-height: 72px; gap: 2rem;
-  }
-  .nav-logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; flex-shrink: 0; }
-  .nav-wordmark { display: flex; flex-direction: column; gap: 0.15rem; }
-  .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.35rem; letter-spacing: 0.1em; color: var(--forest); line-height: 1; }
-  .nav-sub { font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); font-weight: 300; }
-  .nav-links { display: flex; gap: 2.2rem; list-style: none; flex-shrink: 0; }
-  .nav-links a { font-size: 0.97rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; font-weight: 400; transition: color 0.2s; white-space: nowrap; }
-  .nav-links a:hover { color: var(--sage); }
-  .nav-links a.active { color: var(--forest); border-bottom: 1px solid var(--blush); padding-bottom: 2px; }
-
+  
   /* ── HERO BAND ── */
   .hero-band {
     background: var(--forest);
@@ -694,9 +708,6 @@
     .services-grid { grid-template-columns: 1fr; }
     .specialties-grid { grid-template-columns: 1fr; }
   }
-    .nav-links { display: none !important; }
-    .nav-toggle { display: flex !important; }
-  }
 
   @media (max-width: 600px) {
     /* Shrink photo quote overlays on mobile */
@@ -710,145 +721,59 @@
     }
   }
 
-  /* ── MOBILE NAV ── */
+  
+  
+
+  /* ═══ MOBILE NAV — DEFINITIVE ═══ */
   .nav-toggle {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 6px;
     background: none;
     border: none;
     z-index: 300;
     flex-shrink: 0;
-    margin-left: auto;
   }
   .nav-toggle span {
     display: block;
     width: 24px;
     height: 2px;
     background: #2A332C;
-    transition: all 0.25s;
+    transition: all 0.25s ease;
     transform-origin: center;
   }
   .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .nav-drawer {
-    display: none;
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: #F7F5F0;
-    border-bottom: 1px solid #D6DDD6;
-    padding: 0.5rem 0 1rem;
-    z-index: 299;
-    flex-direction: column;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-  .nav-drawer.open { display: flex; }
-  .nav-drawer a {
-    display: block;
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #4A5248;
-    text-decoration: none;
-    border-bottom: 1px solid #D6DDD6;
-    font-weight: 400;
-    font-family: 'Jost', sans-serif;
-  }
-  .nav-drawer a:last-child { border-bottom: none; }
-  .nav-drawer a.active { color: #2A332C; font-weight: 500; }
-  @media (max-width: 720px) {
-    nav { padding: 0.85rem 1.5rem !important; }
-    .nav-links { display: none !important; }
-    .nav-toggle { display: flex !important; }
-  }
-
-  /* ── UNIVERSAL MOBILE OVERFLOW FIX ── */
-  html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  *, *::before, *::after {
-    max-width: 100%;
-  }
-  /* Nav always fits within screen */
-  nav {
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-  @media (max-width: 720px) {
-    /* Constrain all sections and containers */
-    .hero, section, .page, .section, main,
-    .hero-section, .bio-hero, .contact-hero {
+    .nav-drawer { display:none; position:fixed; top:72px; left:0; right:0; background:#F7F5F0; border-bottom:1px solid #D6DDD6; padding:0.5rem 0 1.5rem; z-index:299; flex-direction:column; box-shadow:0 8px 32px rgba(0,0,0,0.12); }
+  .nav-drawer.open { display:flex; }
+  .nav-drawer a { display:block; padding:1.1rem 2rem; font-size:1rem; letter-spacing:0.18em; text-transform:uppercase; color:#4A5248; text-decoration:none; border-bottom:1px solid #D6DDD6; }
+  .nav-drawer a:last-child { border-bottom:none; }
+  .nav-drawer a.active { color:#2A332C; font-weight:500; }
+  @media screen and (max-width: 720px) {
+    nav {
+      padding: 0.85rem 1rem !important;
+      gap: 0.5rem !important;
       max-width: 100vw !important;
-      overflow-x: hidden !important;
+      overflow: hidden !important;
     }
-    /* Stack any side-by-side layouts */
-    .hero-layout, .hero-content, .services-layout,
-    .freq-layout, .together-grid, .approach-grid,
-    .invest-grid, .schedule-grid, .pd-grid,
-    .enrichment-band, .cta-section, .location-grid {
-      grid-template-columns: 1fr !important;
-      flex-direction: column !important;
-    }
-    /* Prevent wide fixed elements */
-    .hero-card, .bio-card, .bio-hero-card,
-    .contact-card, .hero-right {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: unset !important;
-    }
-    /* Nav name text — prevent overflow */
+    ul.nav-links { display: none !important; }
+    button.nav-toggle { display: flex !important; }
+    .nav-sub { display: none !important; }
     .nav-name {
-      font-size: 1rem !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 55vw;
+      font-size: 0.95rem !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: calc(100vw - 80px) !important;
     }
-    .nav-sub {
-      display: none !important;
-    }
-    .nav-wordmark {
-      max-width: 60vw;
-      overflow: hidden;
-    }
-    /* Logo quote row on home */
-    .hero-logo-quote-row {
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 1.25rem !important;
-    }
-    .hero-quote-col {
-      text-align: center !important;
-      align-items: center !important;
-      max-width: 90vw !important;
-    }
-    /* Pathway cards */
-    .pathway-card {
-      flex-direction: column !important;
-    }
-    .pc-right {
-      flex-direction: row !important;
-      justify-content: flex-start !important;
-      gap: 0.75rem !important;
-      border-left: none !important;
-      border-top: 1px solid rgba(255,255,255,0.1) !important;
-      max-width: 100% !important;
-      min-width: unset !important;
-      padding: 1rem 1.25rem !important;
-    }
-    /* Frequency photo layout */
-    .freq-layout {
-      display: flex !important;
-      flex-direction: column !important;
-    }
+    .nav-wordmark { overflow: hidden; max-width: calc(100vw - 80px); }
+    .nav-logo { overflow: hidden; flex-shrink: 1; min-width: 0; }
   }
+    button.nav-toggle { display: flex !important; visibility: visible !important; }
+    .nav-sub { display: none !important; }
 
 </style>
 </head>
@@ -1068,4 +993,34 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-name">Meridian Speech & Learning Services</span>
+  <span data-contact="footer"></span>
   <span class="footer-note">Cha
+<script>
+function toggleNav() {
+  var btn = document.getElementById('navToggle');
+  var drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+  btn.classList.toggle('open');
+  drawer.classList.toggle('open');
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav-drawer a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var btn = document.getElementById('navToggle');
+      var drawer = document.getElementById('navDrawer');
+      if (btn) btn.classList.remove('open');
+      if (drawer) drawer.classList.remove('open');
+    });
+  });
+  var e=[99,104,97,114,105,116,121,108,117,106,97,110,115,108,112,64,103,109,97,105,108,46,99,111,109];
+  var p=[40,52,54,57,41,32,56,53,48,45,51,49,53,56];
+  var dot=String.fromCharCode(183);
+  var em=e.map(function(c){return String.fromCharCode(c);}).join('');
+  var ph=p.map(function(c){return String.fromCharCode(c);}).join('');
+  document.querySelectorAll('[data-contact]').forEach(function(el){
+    el.textContent='Charity Lujan '+dot+' M.A., CCC-SLP '+dot+' Aubrey, TX '+dot+' '+ph+' '+dot+' '+em;
+  });
+});
+</script>
+</body>
+</html>
